@@ -29,7 +29,7 @@ describe('doubleOddNumbers', () => {
 });
 
 describe('mapFilterAndReduce', () => {
-  it(`maps over an array and filters for a length less than 5 and reduces
+  it(`maps over an array and filters for a firstName length less than 5 and reduces
     into an object with the key as the name and value as the length`, () => {
     const arr = mapFilterAndReduce([{
       firstName: 'Tony',
@@ -161,6 +161,6 @@ describe('templateLiterals', () => {
 
 describe('html', () => {
   test('', () => {
-    expect(callTemplateTagFunction()).toBe('The expression  5 &amp;gt; 4  is &amp;quot;true&amp;quot; &amp;  3 &amp;lt; 1  is false');
+    expect(callTemplateTagFunction()).toBe('The expression 5 &amp;gt; 4 is &amp;quot;true&amp;quot; &amp; 3 &amp;lt; 1 is false');
   });
 });
