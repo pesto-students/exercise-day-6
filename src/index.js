@@ -5,13 +5,23 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = (arr) => {
+  const newArr = arr.map(x => x * 3);
+  const newArr2 = newArr.filter(val => val % 5 === 0);
+  return newArr2;
+};
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = (arr) => {
+  const newArr = arr.filter(x => x % 2 !== 0);
+  const newArr2 = newArr.map(val => val * 2);
+  return newArr2;
+};
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = (arr) => {
+
+};
 
 // 4 (*)
 // var instructor = {
@@ -25,6 +35,10 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi() {
+    this.firstName = 'ram';
+    return this.firstName;
+  },
 };
 
 /* Use default arguments in questions 5 and 6
@@ -33,7 +47,9 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
 function createStudent({ likesJavaScript, likesES2015 }) {}
@@ -42,10 +58,19 @@ function createStudent({ likesJavaScript, likesES2015 }) {}
 function placeInMiddle(arr, vals) {}
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+  return args.reduce((acc, current) => acc.concat(current));
+}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  return args.reduce((acc, val) => {
+    if (val % 2 === 0) {
+      return acc + val;
+    }
+    return acc;
+  }, 0);
+}
 
 // 10 (*)
 function bind(fn, thisArg, ...outerArgs) {}
@@ -113,7 +138,7 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  return `There are 4 people on the football team. Their names are ${people[0].name}, ${people[1].name}, ${people[2].name}, ${people[3].name}.`;
 }
 
 /* 14 (*)
