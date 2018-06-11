@@ -9,7 +9,7 @@ const tripleAndFilter = arr => arr.map(item => item * 3).filter(item => item % 5
 
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = arr => arr.filter(item => item % 2 === 1).map(item => item * 2);
 
 // 3 (*)
 const mapFilterAndReduce = (arr) => {};
