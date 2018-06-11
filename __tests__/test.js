@@ -23,7 +23,7 @@ describe('greet', () => {
   test('Promise resolve value', () => expect(greet('Pesto')).resolves.toBe('Hey Pesto'));
 });
 
-describe.only('rejectPromise', () => {
+describe('rejectPromise', () => {
   test('The function should return a Promise', () => {
     expect(rejectPromise() instanceof Promise).toBe(true);
   });
@@ -92,7 +92,7 @@ describe('Queue', () => {
   });
 });
 
-describe.only('Person', () => {
+describe('Person', () => {
   test('should be a class with name = Person', () => {
     expect(/\b\s?class Person\s?{/gm.test(Person.toString())).toBe(true);
   });
