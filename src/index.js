@@ -2,9 +2,9 @@
 // 1 (*)
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
-function timeout(name) {
-  return setTimeout(() => `Hello ${name}`, 300);
-}
+const timeout = name => new Promise(() => {
+  setTimeout(() => `Hello ${name}`, 300);
+});
 
 // 2 (*)
 function sayHi(name) {
@@ -12,9 +12,7 @@ function sayHi(name) {
   return greeting;
 }
 
-function getName(value) {
-  return value;
-}
+const getName = value => new Promise(() => value);
 
 function greet(name) {
   const result = getName(name).then(sayHi);
@@ -28,7 +26,7 @@ function rejectPromise() {
     const errorObject = 'Rejected';
     setTimeout(() => reject(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise.catch(err => Promise.reject(err));
 }
 
 // 4 (*)
@@ -49,10 +47,15 @@ class Queue {
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
+  addDobDigits() {
+    return super.addDobDigits();
+  }
 }
 
 Person.prototype.addDobDigits = function addDobDigits() {
