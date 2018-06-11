@@ -26,11 +26,11 @@ function greet(name) {
 // 3 (*)
 // Pass the tests for the following function
 function rejectPromise() {
-  const promise = new Promise((resolve, reject) => {
-    const errorObject = 'Rejected';
-    setTimeout(() => reject(errorObject), 300);
+  const promise = new Promise((resolve) => {
+    const errorObject = 'REJECTED!';
+    setTimeout(() => resolve(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise;
 }
 
 // 4 (*)
