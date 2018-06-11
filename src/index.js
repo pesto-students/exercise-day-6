@@ -5,14 +5,9 @@
 const timeout = name => new Promise(resolve => resolve(setTimeout(() => `Hello ${name}`, 300)));
 
 // 2 (*)
-function sayHi(name) {
-  const greeting = `Hey ${name}`;
-  return greeting;
-}
+const sayHi = name => new Promise(resolve => resolve(`Hey ${name}`));
 
-function getName(value) {
-  return value;
-}
+const getName = value => new Promise(resolve => resolve(value));
 
 function greet(name) {
   const result = getName(name).then(sayHi);
