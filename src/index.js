@@ -12,7 +12,12 @@ const tripleAndFilter = arr => arr.map(item => item * 3).filter(item => item % 5
 const doubleOddNumbers = arr => arr.filter(item => item % 2 === 1).map(item => item * 2);
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = arr =>
+  arr.filter(name => name.firstName.length < 5)
+    .reduce((acc, curr) => {
+      acc[curr.firstName] = curr.firstName.length;
+      return acc;
+    }, {});
 
 // 4 (*)
 // var instructor = {
@@ -26,6 +31,9 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi: () => {
+    this.firstName = 'Ram';
+  },
 };
 
 /* Use default arguments in questions 5 and 6
@@ -34,10 +42,21 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last } = {}) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript, likesES2015 } = {}) {
+  if (likesJavaScript === false && likesES2015 === false) {
+    return 'The student does not like much...';
+  } else if (likesES2015 === false) {
+    return 'The student likes JavaScript!';
+  } else if (likesJavaScript === false) {
+    return 'The student likes ES2015!';
+  }
+  return 'The student likes JavaScript and ES2015';
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
 function placeInMiddle(arr, vals) {}
@@ -46,7 +65,10 @@ function placeInMiddle(arr, vals) {}
 function joinArrays(...args) {}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  return args.filter((item, index) => index % 2 !== 0)
+    .reduce((acc, curr) => acc + curr, 0);
+}
 
 // 10 (*)
 function bind(fn, thisArg, ...outerArgs) {}
@@ -64,7 +86,7 @@ function bind(fn, thisArg, ...outerArgs) {}
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
   var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
@@ -82,6 +104,7 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  const o = Object.freeze(account);
   account.password = 's3cret';
   return account.password;
 }
@@ -114,7 +137,9 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  const returnString = `There are ${people.length} people on the football team. Their names are ${people[0].name}, ${people[1].name}, ${people[2].name}, ${people[3].name}.`;
+
+  return returnString;
 }
 
 /* 14 (*)
@@ -135,7 +160,11 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
-
+  const str0 = strings[0];
+  const str1 = strings[1];
+  const str2 = strings[2];
+  console.log(strings);
+  return `${str0}${escapeHTML(variables[0])}${escapeHTML(str1)}${escapeHTML(variables[1])}${escapeHTML(str2)}`;
 }
 
 function callTemplateTagFunction() {
