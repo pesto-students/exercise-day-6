@@ -10,15 +10,11 @@ function timeout(name) {
 
 // 2 (*)
 function sayHi(name) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(`Hey ${name}`);
-    }, 300);
-  });
+  return Promise.resolve(`Hey ${name}`);
 }
 
 function getName(value) {
-  return new Promise(() => value);
+  return Promise.resolve(value);
 }
 
 function greet(name) {
@@ -49,7 +45,20 @@ function sequentialPromise() {
 // 6 (*)
 // Implement a queue using ES6 class. See test cases for Queue
 class Queue {
+  constructor(items = [], count = 0) {
+    this.items = items;
+    this.count = count;
+  }
 
+  queue(element) {
+    this.items.push(element);
+    this.count += 1;
+  }
+
+  dequeue() {
+    this.items.pop();
+    this.count -= 1;
+  }
 }
 
 // 7 (*)
