@@ -3,7 +3,7 @@
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
 function timeout(name) {
-  return setTimeout(() => `Hello ${name}`, 300);
+  return new Promise(resolve => setTimeout(resolve(`Hello ${name}`), 3030));
 }
 
 // 2 (*)
@@ -17,28 +17,31 @@ function getName(value) {
 }
 
 function greet(name) {
-  const result = getName(name).then(sayHi);
-  return result;
+  return new Promise(resolve => resolve(sayHi(getName(name))));
+
+  // const result = getName(name).then(sayHi);
+  // return result;
 }
 
 // 3 (*)
 // Pass the tests for the following function
 function rejectPromise() {
-  const promise = new Promise((resolve, reject) => {
-    const errorObject = 'Rejected';
-    setTimeout(() => reject(errorObject), 300);
+  const promise = new Promise((resolve) => {
+    const errorObject = 'REJECTED!';
+    setTimeout(() => resolve(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise;
 }
 
 // 4 (*)
-function allPromises() {
-
+function allPromises(promises) {
+  // return Promise.all(promises).then(result => result);
+  return Promise.all(promises);
 }
 
 // 5 (*)
-function sequentialPromise() {
-
+function sequentialPromise(promises) {
+  return Promise.resolve.then(promises);
 }
 
 // 6 (*)
@@ -49,15 +52,27 @@ class Queue {
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
-}
+// function Person(firstName, lastName, dateOfBirth) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.dateOfBirth = dateOfBirth;
+// }
 
-Person.prototype.addDobDigits = function addDobDigits() {
-  return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
-};
+// Person.prototype.addDobDigits = function addDobDigits() {
+//   return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
+// };
+
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
+
+  addDobDigits() {
+    return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
+  }
+}
 
 module.exports = {
   timeout,
