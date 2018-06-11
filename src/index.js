@@ -5,7 +5,8 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = arr => arr.map(item => item * 3).filter(item => item % 5 === 0);
+
 
 // 2 (*)
 const doubleOddNumbers = (arr) => {};
