@@ -10,6 +10,7 @@ const tripleAndFilter = arr => arr.map(x => x * 3).filter(x => !(x % 5));
 const doubleOddNumbers = arr => arr.filter(x => x % 2).map(x => x * 2);
 
 // 3 (*)
+
 const mapFilterAndReduce = arr => arr.filter(x => x.firstName.length < 5).map(x => x.firstName);
 
 // 4 (*)
@@ -34,7 +35,7 @@ const instructor = {
 // 5 (*)
 function printFullName({ first, last }) {}
 
-// 6 (*)
+// 6 (*) create if conditions, create default object
 function createStudent({ likesJavaScript, likesES2015 }) {}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
@@ -45,18 +46,17 @@ function placeInMiddle(arr, vals) {
   }
   const firstpart = arr.slice(0, mid);
   const lastpart = arr.slice(mid);
-  Array.prototype.push.apply(firstpart, vals);
-  Array.prototype.push.apply(firstpart, lastpart);
-  return firstpart;
+  return [...firstpart, ...vals, ...lastpart];
 }
 
-// 8 (*)
-function joinArrays(...args) {}
+// 8 (*) use reduce and spread
+function joinArrays(...args) {
+}
 
 // 9 (*)
 function sumEvenArgs(...args) {}
 
-// 10 (*)
+// 10 (*) bind function and pass other args
 function bind(fn, thisArg, ...outerArgs) {}
 
 /** 11 (*)
@@ -143,7 +143,7 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
-  return escapeHTML(strings);
+  return `${strings[0]}${escapeHTML(variables[0])}${escapeHTML(strings[1])}${escapeHTML(variables[1])}${strings[2]}`;
 }
 
 function callTemplateTagFunction() {
