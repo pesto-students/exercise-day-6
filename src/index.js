@@ -17,19 +17,21 @@ function getName(value) {
 }
 
 function greet(name) {
-  const promise = new Promise(() => getName(name));
-  promise.then(sayHi);
-  return promise;
+  const promise = new Promise((resolve) => {
+    const result = getName(name).then(sayHi);
+    setTimeout(() => resolve(result), 200);
+  });
+  return promise.then();
 }
 
 // 3 (*)
 // Pass the tests for the following function
 function rejectPromise() {
   const promise = new Promise((resolve, reject) => {
-    const errorObject = 'Rejected';
+    const errorObject = 'REJECTED!';
     setTimeout(() => reject(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise.catch(errorObject => errorObject);
 }
 
 // 4 (*)
@@ -45,7 +47,19 @@ function sequentialPromise() {
 // 6 (*)
 // Implement a queue using ES6 class. See test cases for Queue
 class Queue {
+  constructor() {
+    this.items = [];
+    this.count = 0;
+  }
+  queue(val) {
+    this.items = [...this.items].concat(val);
+    this.count += 1;
+  }
 
+  dequeue() {
+    this.items.splice(this.items.length - 1);
+    this.count -= 1;
+  }
 }
 
 // 7 (*)
