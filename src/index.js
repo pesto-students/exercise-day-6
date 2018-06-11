@@ -2,9 +2,9 @@
 // 1 (*)
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
-function timeout(name){
-  return setTimeout(() => `Hello ${name}`, 300);
-}
+const timeout = name => new Promise(() => {
+  setTimeout(() => `Hello ${name}`, 300);
+});
 
 // 2 (*)
 function sayHi(name) {
@@ -12,9 +12,7 @@ function sayHi(name) {
   return greeting;
 }
 
-function getName(value) {
-  return value;
-}
+const getName = value => new Promise(() => value);
 
 function greet(name) {
   const result = getName(name).then(sayHi);
