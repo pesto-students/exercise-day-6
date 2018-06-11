@@ -2,19 +2,12 @@
 // 1 (*)
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
-function timeout(name) {
-  return setTimeout(() => `Hello ${name}`, 300);
-}
+const timeout = name => new Promise(resolve => resolve(setTimeout(() => `Hello ${name}`, 300)));
 
 // 2 (*)
-function sayHi(name) {
-  const greeting = `Hey ${name}`;
-  return greeting;
-}
+const sayHi = name => new Promise(resolve => resolve(`Hey ${name}`));
 
-function getName(value) {
-  return value;
-}
+const getName = value => new Promise(resolve => resolve(value));
 
 function greet(name) {
   const result = getName(name).then(sayHi);
@@ -28,12 +21,14 @@ function rejectPromise() {
     const errorObject = 'Rejected';
     setTimeout(() => reject(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise.catch(err => `${err.toUpperCase()}!`);
 }
 
 // 4 (*)
-function allPromises() {
-
+function allPromises(args) {
+  // const promise = new Promise(resolve => resolve(...args));
+  // return promise;
+  return Promise.all(args);
 }
 
 // 5 (*)
@@ -49,10 +44,15 @@ class Queue {
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
+  addDobDigits() {
+    this.dateOfBirth = 30;
+  }
 }
 
 Person.prototype.addDobDigits = function addDobDigits() {
