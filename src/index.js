@@ -17,8 +17,10 @@ function getName(value) {
 }
 
 function greet(name) {
-  const result = getName(name).then(sayHi);
-  return result;
+  return new Promise(resolve => resolve(sayHi(getName(name))));
+
+  // const result = getName(name).then(sayHi);
+  // return result;
 }
 
 // 3 (*)
