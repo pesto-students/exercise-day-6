@@ -2,9 +2,7 @@
 // 1 (*)
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
-function timeout(name) {
-  return setTimeout(() => `Hello ${name}`, 300);
-}
+const timeout = name => new Promise(resolve => resolve(setTimeout(() => `Hello ${name}`, 300)));
 
 // 2 (*)
 function sayHi(name) {
