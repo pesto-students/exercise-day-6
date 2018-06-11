@@ -88,3 +88,18 @@
 
     1. Does the order of the parameters matter?
     2. Could the `0.2` be replaced by another variable or function call?
+
+
+Answers:
+
+Q1:
+The value of p3 is undefined.
+let [p1, p2, p3 = 'default'] = phonetic;
+
+Q2:
+
+let arr2 = ['one', 'two', ['three', ['four', ['five', 'six', 'seven']], 'eight']];
+
+[first, m, second, o] = arr2;
+[temp] = second
+[temp2]
