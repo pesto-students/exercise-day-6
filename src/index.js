@@ -5,10 +5,10 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = arr => arr.map(x => x * 3).filter(x => x % 5 === 0);
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = arr => arr.filter(x => x % 2 === 1).map(x => x * 2);
 
 // 3 (*)
 const mapFilterAndReduce = (arr) => {};
@@ -25,6 +25,11 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi() {
+    setTimeout(() => {
+      this.firstName = 'Ram';
+    }, 1000);
+  },
 };
 
 /* Use default arguments in questions 5 and 6
@@ -33,22 +38,64 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  const name = `My name is ${first} ${last}`;
+  return name;
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript = true, likesES2015 = true } = {}) {
+  let str2;
+  if (likesES2015 === true && likesJavaScript === true) {
+    str2 = 'The student likes JavaScript and ES2015';
+  } else
+  if (likesJavaScript === false && likesES2015 === false) {
+    str2 = 'The student does not like much...';
+  } else
+  if (likesJavaScript === false) {
+    str2 = 'The student likes ES2015!';
+  } else
+  if (likesES2015 === false) {
+    str2 = 'The student likes JavaScript!';
+  }
+  return str2;
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+  return vals.map(x => arr.filter((y) => {
+    if (y < x) {
+      return y;
+    }
+    return x;
+  }));
+}
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+  return args.join().split(',').map(x => Number(x));
+}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  let flag = false;
+  return args.reduce((acc, val) => {
+    if (flag === false) {
+      flag = true;
+      return acc;
+    }
+    if (flag === true) {
+      flag = false;
+      return acc + val;
+    }
+    return true;
+  }, 0);
+}
 
 // 10 (*)
-function bind(fn, thisArg, ...outerArgs) {}
+function bind(fn, thisArg, ...outerArgs) {
+
+}
 
 /** 11 (*)
   This is a typical mistake to make in JavaScript. We create a number of
