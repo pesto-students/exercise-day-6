@@ -5,13 +5,44 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = (arr) => {
+  const returnedArray = arr.map(item => item * 3).filter(item => item % 5 === 0);
+  return returnedArray;
+};
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = (arr) => {
+  const returnedArray = arr.filter(item => (item % 2 !== 0)).map(item => item * 2);
+  return returnedArray;
+};
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+
+// it(`maps over an array and filters firstName for a length less than 5 and reduces
+//   into an object with the key as the name and value as the length`, () => {
+//   const arr = mapFilterAndReduce([{
+//     firstName: 'Tony',
+//   }, {
+//     firstName: 'Steve',
+//   }, {
+//     firstName: 'Tchala',
+//   }, {
+//     firstName: 'Thor',
+//   }]);
+//   expect(arr).toEqual({
+//     Tony: 4,
+//     Thor: 4,
+//   });
+// });
+const mapFilterAndReduce = (arr) => {
+  const returnedItem = arr.filter(item => item.firstName.length < 5).reduce((obj, item) => {
+    const name = item.firstName;
+    const newObj = obj;
+    newObj[name] = name.length;
+    return newObj;
+  }, {});
+  return returnedItem;
+};
 
 // 4 (*)
 // var instructor = {
@@ -25,6 +56,11 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi: () => {
+    setTimeout(() => {
+      this.firstName = 'Ram';
+    }, 1000);
+  },
 };
 
 /* Use default arguments in questions 5 and 6
@@ -33,22 +69,65 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript = true, likesES2015 = true } = {}) {
+  let returnedString = '';
+  if (likesJavaScript && likesES2015) {
+    returnedString = 'The student likes JavaScript and ES2015';
+  } else if (!likesJavaScript && !likesES2015) {
+    returnedString = 'The student does not like much...';
+  } else if (!likesJavaScript) {
+    returnedString = 'The student likes ES2015!';
+  } else if (!likesES2015) {
+    returnedString = 'The student likes JavaScript!';
+  }
+
+  return returnedString;
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+  const arrMiddleIndex = Math.floor(arr.length / 2);
+
+  const firstPartOfArray = arr.slice(0, arrMiddleIndex);
+  const secondPartOfArray = arr.slice(arrMiddleIndex, Math.floor(arr.length));
+
+  const returnedArray = [...firstPartOfArray, ...vals, ...secondPartOfArray];
+  return returnedArray;
+}
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+  const returnedArray = args.reduce((finalArr, item) => {
+    const tempArray = [...finalArr, ...item];
+    return tempArray;
+  }, []);
+
+  return returnedArray;
+}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  const returnedArray = args.reduce((total, item, index) => {
+    let tempVal = total;
+    if ((index + 1) % 2 === 0) {
+      tempVal += item;
+    }
+    return tempVal;
+  }, 0);
+
+  return returnedArray;
+}
 
 // 10 (*)
-function bind(fn, thisArg, ...outerArgs) {}
+function bind(fn, thisArg, ...outerArgs) {
+  const returnedFunc = fn.bind(thisArg, ...outerArgs);
+  return returnedFunc;
+}
 
 /** 11 (*)
   This is a typical mistake to make in JavaScript. We create a number of
@@ -63,7 +142,7 @@ function bind(fn, thisArg, ...outerArgs) {}
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
   var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
@@ -76,11 +155,23 @@ function blockScoping(n) {
   Hint: Object property descriptors
  */
 
+// const in case of objects refer to the reference.
 function constImmutable() {
-  const account = {
-    username: 'pesto',
-    password: 'initialPassword',
-  };
+  // const account = {
+  //   username: 'pesto',
+  //   password: 'initialPassword',
+  // };
+
+  const account = {};
+
+  Object.defineProperty(account, 'username', {
+    value: 'pesto',
+    writable: false,
+  });
+  Object.defineProperty(account, 'password', {
+    value: 'initialPassword',
+    writable: false,
+  });
   account.password = 's3cret';
   return account.password;
 }
@@ -113,7 +204,22 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  let returnedString = `There are ${people.length} people on the ${teamName} team. Their names are`;
+
+  const reducedString = people.reduce((string, player, index) => {
+    let tempString = string;
+
+    if (index === (people.length - 1)) {
+      tempString += ` ${player.name}.`;
+    } else {
+      tempString += ` ${player.name},`;
+    }
+
+    return tempString;
+  }, '');
+
+  returnedString += reducedString;
+  return returnedString;
 }
 
 /* 14 (*)
@@ -134,7 +240,22 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
+  let [trueExpression, falseExpression] = variables;
+  trueExpression = escapeHTML(trueExpression);
+  falseExpression = escapeHTML(falseExpression);
 
+  const tempArray = [trueExpression, falseExpression];
+
+  let tempString = '';
+  strings.forEach((item, index) => {
+    tempString += escapeHTML(item);
+
+    if (tempArray[index]) {
+      tempString += tempArray[index];
+    }
+  });
+
+  return tempString;
 }
 
 function callTemplateTagFunction() {
