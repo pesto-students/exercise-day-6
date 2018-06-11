@@ -7,9 +7,9 @@ function timeout(name) {
 }
 
 // 2 (*)
-function sayHi(name) {
+/* function sayHi(name) {
   const greeting = `Hey ${name}`;
-  return new Promise(() => greeting);
+  return greeting;
 }
 
 function getName(value) {
@@ -17,10 +17,13 @@ function getName(value) {
 }
 
 function greet(name) {
-  const result = getName(name).then(sayHi);
+  const result = name => new Promise((resolve) => {
+    setTimeout(resolve, name);
+  });
+  result.then(() => sayHi);
   return result;
 }
-
+*/
 // 3 (*)
 // Pass the tests for the following function
 function rejectPromise() {
@@ -28,7 +31,7 @@ function rejectPromise() {
     const errorObject = 'Rejected';
     setTimeout(() => reject(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise.catch(() => Promise.reject());
 }
 
 // 4 (*)
@@ -49,7 +52,7 @@ class Queue {
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
+/* function Person(firstName, lastName, dateOfBirth) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.dateOfBirth = dateOfBirth;
@@ -58,10 +61,21 @@ function Person(firstName, lastName, dateOfBirth) {
 Person.prototype.addDobDigits = function addDobDigits() {
   return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
 };
+*/
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
+  addDobDigits() {
+    return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
+  }
+}
 
 module.exports = {
   timeout,
-  greet,
+  // greet,
   rejectPromise,
   allPromises,
   Queue,

@@ -16,14 +16,14 @@ describe('timeout', () => {
   });
 });
 
-describe.only('greet', () => {
+describe('greet', () => {
   test('The function should return a Promise', () => {
     expect(greet() instanceof Promise).toBe(true);
   });
   test('Promise resolve value', () => expect(greet('Pesto')).resolves.toBe('Hey Pesto'));
 });
 
-describe('rejectPromise', () => {
+describe.only('rejectPromise', () => {
   test('The function should return a Promise', () => {
     expect(rejectPromise() instanceof Promise).toBe(true);
   });
@@ -92,7 +92,7 @@ describe('Queue', () => {
   });
 });
 
-describe('Person', () => {
+describe.only('Person', () => {
   test('should be a class with name = Person', () => {
     expect(/\b\s?class Person\s?{/gm.test(Person.toString())).toBe(true);
   });
