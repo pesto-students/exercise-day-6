@@ -3,7 +3,7 @@
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
 function timeout(name) {
-  return setTimeout(() => `Hello ${name}`, 300);
+  return new Promise(() => { setTimeout(() => `Hello ${name}`, 300); });
 }
 
 // 2 (*)
@@ -17,8 +17,9 @@ function getName(value) {
 }
 
 function greet(name) {
-  const result = getName(name).then(sayHi);
-  return result;
+  const promise = new Promise(() => getName(name));
+  promise.then(sayHi);
+  return promise;
 }
 
 // 3 (*)
