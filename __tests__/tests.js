@@ -66,7 +66,7 @@ describe('printFullName', () => {
   });
 });
 
-describe('createStudent', () => {
+describe.only('createStudent', () => {
   test('returns a string with the first value and last value of an object with a destructured parameter', () => {
     expect(createStudent()).toBe('The student likes JavaScript and ES2015');
     expect(createStudent({
@@ -138,7 +138,7 @@ describe('bind', () => {
   });
 });
 
-describe('blockScoping', () => {
+describe.only('blockScoping', () => {
   test('should return the number (range: 0 - 10) sent as argument to function', () => {
     expect(blockScoping(5)).toBe(5);
     expect(blockScoping(2)).toBe(2);
