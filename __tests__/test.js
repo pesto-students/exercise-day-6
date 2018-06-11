@@ -16,7 +16,7 @@ describe('timeout', () => {
   });
 });
 
-describe('greet', () => {
+describe.only('greet', () => {
   test('The function should return a Promise', () => {
     expect(greet() instanceof Promise).toBe(true);
   });

@@ -3,13 +3,13 @@
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
 function timeout(name) {
-  return setTimeout(() => `Hello ${name}`, 300);
+  return new Promise(() => { setTimeout(() => `Hello ${name}`, 300); });
 }
 
 // 2 (*)
 function sayHi(name) {
   const greeting = `Hey ${name}`;
-  return greeting;
+  return new Promise(() => greeting);
 }
 
 function getName(value) {
