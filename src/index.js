@@ -163,7 +163,6 @@ function html(strings, ...variables) {
   const str0 = strings[0];
   const str1 = strings[1];
   const str2 = strings[2];
-  console.log(strings);
   return `${str0}${escapeHTML(variables[0])}${escapeHTML(str1)}${escapeHTML(variables[1])}${escapeHTML(str2)}`;
 }
 
