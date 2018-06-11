@@ -5,13 +5,49 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
-
+const tripleAndFilter = (arr) => {
+  let i;
+  let len;
+  const fives = [];
+  for (i = 0, len = arr.length; i < len; i += 1) {
+    if (arr[i] % 5 === 0) {
+      fives.push(arr[i]);
+    }
+  }
+  for (let j = 0; j < fives.length; j += 1) {
+    fives[j] *= 3;
+  }
+  return fives;
+};
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = (arr) => {
+  let i;
+  let len;
+  const odd = [];
+  for (i = 0, len = arr.length; i < len; i += 1) {
+    if (arr[i] % 2 === 1) {
+      odd.push(arr[i]);
+    }
+  }
+  for (let j = 0; j < odd.length; j += 1) {
+    odd[j] *= 2;
+  }
+  return odd;
+  // return fives.reduce((acc, val) => acc + val);
+};
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = (arr) => {
+  const arr1 = [];
+  const arr2 = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i].firstName.length < 5) { arr1.push(arr[i]); }
+  }
+  for (let k = 0; k < arr1.length; k += 1) {
+    arr2.push(`${arr1[k].firstName}": ${arr1[k].firstName.length}`);
+  }
+  return arr2;
+};
 
 // 4 (*)
 // var instructor = {
@@ -33,7 +69,9 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
 function createStudent({ likesJavaScript, likesES2015 }) {}
