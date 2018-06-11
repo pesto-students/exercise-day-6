@@ -17,7 +17,7 @@ function getName(value) {
 }
 
 function greet(name) {
-  const result = getName(name).then(sayHi);
+  const result = new Promise(() => { getName(name).then(sayHi); });
   return result;
 }
 
@@ -44,6 +44,28 @@ function sequentialPromise() {
 // 6 (*)
 // Implement a queue using ES6 class. See test cases for Queue
 class Queue {
+  constructor(datasource = []) {
+    this.datasource = datasource;
+  }
+  push(element) {
+    this.datasource.push(element);
+  }
+  shift() {
+    return this.datasource.shift;
+  }
+  peekFront() {
+    return this.datasource[0];
+  }
+  peekBack() {
+    return this.datasource[this.datasource.length - 1];
+  }
+  peekSource() {
+    return this.datasource.peekSource;
+  }
+  isEmpty() {
+    return !this.datasource.length;
+  }
+
 
 }
 
@@ -58,6 +80,14 @@ function Person(firstName, lastName, dateOfBirth) {
 Person.prototype.addDobDigits = function addDobDigits() {
   return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
 };
+class Person(){
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;;
+  }
+
+}
 
 module.exports = {
   timeout,
