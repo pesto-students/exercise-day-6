@@ -5,13 +5,13 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
-
+const tripleAndFilter = arr => arr.map(x => x * 3).filter(x => !(x % 5));
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = arr => arr.filter(x => x % 2).map(x => x * 2);
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+
+const mapFilterAndReduce = arr => arr.filter(x => x.firstName.length < 5).map(x => x.firstName);
 
 // 4 (*)
 // var instructor = {
@@ -35,19 +35,28 @@ const instructor = {
 // 5 (*)
 function printFullName({ first, last }) {}
 
-// 6 (*)
+// 6 (*) create if conditions, create default object
 function createStudent({ likesJavaScript, likesES2015 }) {}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+  let mid = 0;
+  if (arr.length > 1) {
+    mid = Math.ceil(arr.length / 2);
+  }
+  const firstpart = arr.slice(0, mid);
+  const lastpart = arr.slice(mid);
+  return [...firstpart, ...vals, ...lastpart];
+}
 
-// 8 (*)
-function joinArrays(...args) {}
+// 8 (*) use reduce and spread
+function joinArrays(...args) {
+}
 
 // 9 (*)
 function sumEvenArgs(...args) {}
 
-// 10 (*)
+// 10 (*) bind function and pass other args
 function bind(fn, thisArg, ...outerArgs) {}
 
 /** 11 (*)
@@ -81,6 +90,7 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  Object.freeze(account);
   account.password = 's3cret';
   return account.password;
 }
@@ -112,8 +122,7 @@ function templateLiterals() {
     name: 'Pogba',
     role: 'CM',
   }];
-
-  return '';
+  return `There are 4 people on the football team. Their names are ${people.map(x => x.name).join(', ')}.`;
 }
 
 /* 14 (*)
@@ -134,7 +143,7 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
-
+  return `${strings[0]}${escapeHTML(variables[0])}${escapeHTML(strings[1])}${escapeHTML(variables[1])}${strings[2]}`;
 }
 
 function callTemplateTagFunction() {
