@@ -46,25 +46,7 @@ function sequentialPromise() {
 class Queue {
   constructor(datasource = []) {
     this.datasource = datasource;
-  }
-  push(element) {
-    this.datasource.push(element);
-  }
-  shift() {
-    return this.datasource.shift;
-  }
-  peekFront() {
-    return this.datasource[0];
-  }
-  peekBack() {
-    return this.datasource[this.datasource.length - 1];
-  }
-  peekSource() {
-    return this.datasource.peekSource;
-  }
-  isEmpty() {
-    return !this.datasource.length;
-  }
+
 
 
 }
