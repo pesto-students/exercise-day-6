@@ -10,7 +10,7 @@ const {
 
 /* eslint-disable no-unused-vars */
 
-describe('timeout', () => {
+describe.only('timeout', () => {
   test('works with promises', () => {
     timeout('Pesto').then(data => expect(data).toBe('Hello Pesto'));
   });
