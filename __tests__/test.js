@@ -6,7 +6,7 @@ const {
   Queue,
   Person,
   sequentialPromise,
-} = require('../src');
+} = require('../src').default.default;
 
 /* eslint-disable no-unused-vars */
 
