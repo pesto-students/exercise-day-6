@@ -35,9 +35,13 @@ function allPromises() {
 }
 
 // 5 (*)
-function sequentialPromise() {
-
-}
+const sequentialPromise = arr => new Promise(() => {
+  arr.reduce(
+    (acc, cur) =>
+      acc.then(() => new Promise(cur)),
+    Promise.resolve(),
+  );
+});
 
 // 6 (*)
 // Implement a queue using ES6 class. See test cases for Queue
@@ -47,10 +51,12 @@ class Queue {
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
 }
 
 Person.prototype.addDobDigits = function addDobDigits() {
