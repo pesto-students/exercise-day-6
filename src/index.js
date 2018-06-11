@@ -10,7 +10,11 @@ function timeout(name) {
 
 // 2 (*)
 function sayHi(name) {
-  return new Promise(() => `Hey ${name}`);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Hey ${name}`);
+    }, 300);
+  });
 }
 
 function getName(value) {
@@ -29,12 +33,12 @@ function rejectPromise() {
     const errorObject = 'Rejected';
     setTimeout(() => reject(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise.catch(() => 'REJECTED!');
 }
 
 // 4 (*)
-function allPromises() {
-
+function allPromises(arr) {
+  return Promise.all(arr);
 }
 
 // 5 (*)
@@ -50,15 +54,27 @@ class Queue {
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
-}
+// function Person(firstName, lastName, dateOfBirth) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.dateOfBirth = dateOfBirth;
+// }
 
-Person.prototype.addDobDigits = function addDobDigits() {
-  return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
-};
+// Person.prototype.addDobDigits = function addDobDigits() {
+//   return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
+// };
+
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
+
+  addDobDigits() {
+    return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
+  }
+}
 
 module.exports = {
   timeout,
