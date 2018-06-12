@@ -3,7 +3,7 @@
 // Would the following code work? If not, check out this function's test cases
 // and correct the function.
 function timeout(name) {
-  return setTimeout(() => `Hello ${name}`, 300);
+  return new Promise(() => { setTimeout(() => `Hello ${name}`, 300); });
 }
 
 // 2 (*)
@@ -13,7 +13,7 @@ function sayHi(name) {
 }
 
 function getName(value) {
-  return value;
+  return new Promise(res => res(value));
 }
 
 function greet(name) {
@@ -25,34 +25,48 @@ function greet(name) {
 // Pass the tests for the following function
 function rejectPromise() {
   const promise = new Promise((resolve, reject) => {
-    const errorObject = 'Rejected';
+    const errorObject = 'REJECTED!';
     setTimeout(() => reject(errorObject), 300);
   });
-  return promise.catch(() => {});
+  return promise.catch(errorObject => errorObject);
 }
 
 // 4 (*)
-function allPromises() {
-
+function allPromises(promise) {
+  return Promise.all(promise);
 }
 
 // 5 (*)
-function sequentialPromise() {
-
+function sequentialPromise(promises) {
+  return promises.reduce((acc, promise) => acc.then(promise), Promise.resolve(''));
 }
 
 // 6 (*)
 // Implement a queue using ES6 class. See test cases for Queue
 class Queue {
+  constructor() {
+    this.items = [];
+    this.count = 0;
+  }
+  queue(val) {
+    this.items = this.items.push(val);
+    this.count += 1;
+  }
 
+  dequeue() {
+    this.items.splice(this.items.length - 1);
+    this.count -= 1;
+  }
 }
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
 }
 
 Person.prototype.addDobDigits = function addDobDigits() {
