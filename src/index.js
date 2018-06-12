@@ -13,15 +13,12 @@ function sayHi(name) {
 }
 
 function getName(value) {
-  return value;
+  return new Promise(res => res(value));
 }
 
 function greet(name) {
-  const promise = new Promise((resolve) => {
-    const result = getName(name).then(sayHi);
-    setTimeout(() => resolve(result), 200);
-  });
-  return promise.then();
+  const result = getName(name).then(sayHi);
+  return result;
 }
 
 // 3 (*)
@@ -35,13 +32,13 @@ function rejectPromise() {
 }
 
 // 4 (*)
-function allPromises() {
-
+function allPromises(promise) {
+  return Promise.all(promise);
 }
 
 // 5 (*)
-function sequentialPromise() {
-
+function sequentialPromise(promises) {
+  return promises.reduce((acc, promise) => acc.then(promise), Promise.resolve(''));
 }
 
 // 6 (*)
@@ -52,7 +49,7 @@ class Queue {
     this.count = 0;
   }
   queue(val) {
-    this.items = [...this.items].concat(val);
+    this.items = this.items.push(val);
     this.count += 1;
   }
 
