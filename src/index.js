@@ -21,17 +21,15 @@ function greet(name) {
 
 // 3 (*)
 // Pass the tests for the following function
-function rejectPromise() {
-  const promise = new Promise((resolve, reject) => {
-    const errorObject = 'Rejected';
-    setTimeout(() => reject(errorObject), 300);
-  });
-  return promise.catch(() => {});
-}
+const rejectPromise = () => new Promise((resolve) => {
+  const errorObject = 'REJECTED!';
+  return setTimeout(() => resolve(errorObject), 3000);
+});
+
 
 // 4 (*)
-function allPromises() {
-
+function allPromises(arr) {
+  return Promise.all(arr);
 }
 
 // 5 (*)
@@ -40,13 +38,25 @@ const sequentialPromise = arr => new Promise(() => {
     (acc, cur) =>
       acc.then(() => new Promise(cur)),
     Promise.resolve(),
+    [],
   );
 });
 
 // 6 (*)
 // Implement a queue using ES6 class. See test cases for Queue
 class Queue {
-
+  constructor() {
+    this.items = [];
+    this.count = 0;
+  }
+  queue(num) {
+    this.items.push(num);
+    this.count = this.items.length;
+  }
+  dequeue() {
+    this.items.pop();
+    this.count = this.items.length;
+  }
 }
 
 // 7 (*)
