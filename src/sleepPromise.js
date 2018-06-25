@@ -9,8 +9,10 @@
 //   console.log('2 seconds later …')
 // });
 
-function sleep() {
-
+function sleep(timeInMs) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeInMs);
+  });
 }
 
 module.exports = sleep;
