@@ -10,8 +10,15 @@
 //     console.log(result.foo, result.bar);
 // });
 
-function promiseAllProps() {
+function promiseAllProps(object) {
+  const keys = Object.keys(object);
+  const values = Object.values(object);
 
+  return Promise.all(values).then(results =>
+    keys.reduce((fulfilledObject, key, index) => {
+      fulfilledObject[key] = results[index]; // eslint-disable-line
+      return fulfilledObject;
+    }, {}));
 }
 
 module.exports = promiseAllProps;
