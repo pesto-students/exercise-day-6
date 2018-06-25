@@ -35,9 +35,10 @@ function allPromises(arr) {
 // 5 (*)
 const sequentialPromise = arr => new Promise(() => {
   arr.reduce(
-    (acc, cur) =>
-      acc.then(() => new Promise(cur)),
-    Promise.resolve(),
+    (acc, cur) => {
+      const ans = Promise.resolve(cur).then(data => data);
+      return [...acc, ans];
+    },
     [],
   );
 });

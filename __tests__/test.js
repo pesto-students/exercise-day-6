@@ -92,7 +92,7 @@ describe('Queue', () => {
   });
 });
 
-describe('Person', () => {
+describe.only('Person', () => {
   test('should be a class with name = Person', () => {
     expect(/\b\s?class Person\s?{/gm.test(Person.toString())).toBe(true);
   });
@@ -112,7 +112,7 @@ describe('Person', () => {
   });
 });
 
-describe('sequentialPromise', () => {
+describe.only('sequentialPromise', () => {
   test('should resolve 3 promises in sequence and return a promise', async () => {
     const p1 = () => new Promise((resolve, reject) => {
       setTimeout(() => {
