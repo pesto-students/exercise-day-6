@@ -155,7 +155,20 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
+  const varArr = Array.from(variables);
+  const strArr = Array.from(strings);
 
+  const finalStr = strArr.reduce((acc, str, index) => {
+    // eslint-disable-next-line
+    acc += escapeHTML(str);
+    if (index < varArr.length) {
+      // eslint-disable-next-line
+      acc += escapeHTML(varArr[index]);
+    }
+    return acc;
+  }, '');
+
+  return finalStr;
 }
 
 function callTemplateTagFunction() {
