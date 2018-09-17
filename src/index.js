@@ -13,7 +13,12 @@ const tripleAndFilter = (arr) => {
 };
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = (arr) => {
+  const newArr = arr
+    .filter(num => num % 2 !== 0)
+    .map(oddNum => oddNum * 2);
+  return newArr;
+};
 
 // 3 (*)
 const mapFilterAndReduce = (arr) => {};
