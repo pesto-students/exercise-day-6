@@ -10,8 +10,17 @@
 //     console.log(result.foo, result.bar);
 // });
 
-function promiseAllProps() {
+function promiseAllProps(obj) {
+  const newObj = {};
+  Object.keys(obj).map((val) => {
+    newObj[val] = '';
+    return obj[val];
+  });
 
+  // return Promise.all(objPromise).then(([result1, result2]) => {
+  //   let bal = 1;
+  //   return '';
+  // });
 }
 
 module.exports = promiseAllProps;
