@@ -45,7 +45,13 @@ function printFullName({ first = 'Anirudh', last = 'Nimmagadda' }) {
 }
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) { }
+function createStudent({ likesJavaScript = true, likesES2015 = true } = {}) {
+  if (likesJavaScript && likesES2015) return 'The student likes JavaScript and ES2015';
+  else if (likesJavaScript) return 'The student likes JavaScript!';
+  else if (likesES2015) return 'The student likes ES2015!';
+
+  return 'The student does not like much...';
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
 function placeInMiddle(arr, vals) { }
