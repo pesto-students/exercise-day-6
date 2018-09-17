@@ -5,13 +5,31 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = (arr) => {
+  const newArr = arr
+    .map(num => num * 3)
+    .filter(tripNum => tripNum % 15 === 0);
+  return newArr;
+};
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = (arr) => {
+  const newArr = arr
+    .filter(num => num % 2 !== 0)
+    .map(oddNum => oddNum * 2);
+  return newArr;
+};
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = (arr) => {
+  const newObj = arr
+    .filter(obj => obj.firstName.length < 5)
+    .reduce((acc, obj) => {
+      acc[obj.firstName] = obj.firstName.length;
+      return acc;
+    }, {});
+  return newObj;
+};
 
 // 4 (*)
 // var instructor = {
@@ -25,6 +43,9 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi: () => {
+    this.firstName = 'Ram';
+  },
 };
 
 /* Use default arguments in questions 5 and 6
@@ -63,7 +84,7 @@ function bind(fn, thisArg, ...outerArgs) {}
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
   var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
@@ -81,6 +102,7 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  Object.freeze(account);
   account.password = 's3cret';
   return account.password;
 }
@@ -113,7 +135,9 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  const namesArr = people.map(obj => obj.name);
+
+  return `There are ${people.length} people on the ${teamName} team. Their names are ${namesArr.join(', ')}.`;
 }
 
 /* 14 (*)
@@ -134,7 +158,20 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
+  const varArr = Array.from(variables);
+  const strArr = Array.from(strings);
 
+  const finalStr = strArr.reduce((acc, str, index) => {
+    // eslint-disable-next-line
+    acc += escapeHTML(str);
+    if (index < varArr.length) {
+      // eslint-disable-next-line
+      acc += escapeHTML(varArr[index]);
+    }
+    return acc;
+  }, '');
+
+  return finalStr;
 }
 
 function callTemplateTagFunction() {
