@@ -68,7 +68,9 @@ function joinArrays(...args) {
 }
 
 // 9 (*)
-function sumEvenArgs(...args) { }
+function sumEvenArgs(...args) {
+  return args.filter((x, idx) => idx % 2).reduce((acc, elem) => acc + elem, 0);
+}
 
 // 10 (*)
 function bind(fn, thisArg, ...outerArgs) { }
