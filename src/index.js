@@ -43,6 +43,9 @@ const mapFilterAndReduce = (arr) => {
 
 const instructor = {
   firstName: 'John',
+  sayHi: () => {
+    this.firstName = 'Ram';
+  },
 };
 
 /* Use default arguments in questions 5 and 6
