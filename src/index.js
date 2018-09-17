@@ -11,7 +11,11 @@ const tripleAndFilter = arr => arr.map(x => x * 3).filter(x => x % 5 === 0);
 const doubleOddNumbers = arr => arr.filter(x => x % 2).map(x => x * 2);
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => { };
+const mapFilterAndReduce = arr => arr.filter(elem => elem.firstName.length < 5)
+  .reduce((acc, elem) => {
+    acc[elem.firstName] = elem.firstName.length;
+    return acc;
+  }, {});
 
 // 4 (*)
 // var instructor = {
