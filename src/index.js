@@ -164,7 +164,14 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
+  const surroundingStrings = strings.map(escapeHTML);
+  const stringsToInterject = variables.map(escapeHTML);
 
+  const finalHTML = surroundingStrings.concat([]);
+  for (let i = stringsToInterject.length - 1; i >= 0; i -= 1) {
+    finalHTML.splice(i + 1, 0, stringsToInterject[i]);
+  }
+  return finalHTML.join('');
 }
 
 function callTemplateTagFunction() {
