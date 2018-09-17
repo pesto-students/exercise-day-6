@@ -54,7 +54,13 @@ function createStudent({ likesJavaScript = true, likesES2015 = true } = {}) {
 }
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) { }
+function placeInMiddle(arr, vals) {
+  const midElemIdx = Math.floor(arr.length / 2);
+
+  const arrCopy = arr.concat([]);
+  arrCopy.splice(midElemIdx, 0, ...vals);
+  return arrCopy;
+}
 
 // 8 (*)
 function joinArrays(...args) { }
