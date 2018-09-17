@@ -93,7 +93,9 @@ function joinArrays(...args) {
 }
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  
+}
 
 // 10 (*)
 function bind(fn, thisArg, ...outerArgs) {}
