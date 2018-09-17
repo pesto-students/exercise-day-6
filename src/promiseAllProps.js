@@ -11,16 +11,17 @@
 // });
 
 function promiseAllProps(obj) {
-  const newObj = {};
-  Object.keys(obj).map((val) => {
-    newObj[val] = '';
-    return obj[val];
-  });
+  const objKeys = Object.keys(obj);
 
-  // return Promise.all(objPromise).then(([result1, result2]) => {
-  //   let bal = 1;
-  //   return '';
-  // });
+  const newArr = objKeys.map(val => obj[val]);
+
+  return Promise.all(newArr).then((values) => {
+    const newObj = {};
+    objKeys.forEach((val, index) => {
+      newObj[val] = values[index];
+    });
+    return newObj;
+  });
 }
 
 module.exports = promiseAllProps;
