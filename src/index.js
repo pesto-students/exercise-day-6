@@ -54,13 +54,25 @@ function printFullName({ first, last }) {
 }
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {
+function createStudent({ likesJavaScript = true, likesES2015 = true } = {}) {
+  const start = 'The student likes ';
+  if (!likesES2015 && likesJavaScript) {
+    return `${start}JavaScript!`;
+  } else if (!likesJavaScript && likesES2015) {
+    return `${start}ES2015!`;
+  } else if (likesES2015 && likesJavaScript) {
+    return `${start}JavaScript and ES2015`;
+  }
+  return 'The student does not like much...';
 }
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
 function placeInMiddle(arr, vals) {
-  const mid = (0 + arr.length) / 2;
-  return arr.splice(mid, 0, ...vals);
+  const mid = Math.floor(0 + arr.length) / 2;
+  const newArr = [];
+  const arrCopy = arr.concat(newArr);
+  arrCopy.splice(mid, 0, ...vals);
+  return arrCopy;
 }
 
 // 8 (*)
@@ -91,8 +103,8 @@ function bind(fn, thisArg, ...outerArgs) {
 
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
-  var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  const callbacks = [];
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
