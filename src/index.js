@@ -32,8 +32,8 @@ function rejectPromise() {
 }
 
 // 4 (*)
-function allPromises() {
-
+function allPromises(promises) {
+  return Promise.all(promises);
 }
 
 // 5 (*)
