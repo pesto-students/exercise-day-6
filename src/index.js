@@ -5,13 +5,26 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+// eslint-disable-next-line
+const tripleAndFilter = (arr) => {
+  return arr.map(el => el * 3).filter(el => el % 5 === 0);
+};
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+// eslint-disable-next-line
+const doubleOddNumbers = (arr) => {
+  return arr.filter(el => el % 2 !== 0).map(el => el * 2);
+};
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = (arr) => {
+  const newArr = arr.map(el => el.firstName).filter(el => el.length < 5);
+  const obj = {};
+  newArr.forEach((el) => {
+    obj[el] = el.length;
+  });
+  return obj;
+};
 
 // 4 (*)
 // var instructor = {
@@ -25,6 +38,9 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi: () => {
+    this.firstName = 'Ram'; // [see implement promise]
+  },
 };
 
 /* Use default arguments in questions 5 and 6
@@ -33,22 +49,47 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript = true, likesES2015 = true } = {}) {
+  const start = 'The student likes ';
+  if (!likesES2015 && likesJavaScript) {
+    return `${start}JavaScript!`;
+  } else if (!likesJavaScript && likesES2015) {
+    return `${start}ES2015!`;
+  } else if (likesES2015 && likesJavaScript) {
+    return `${start}JavaScript and ES2015`;
+  }
+  return 'The student does not like much...';
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+  const mid = Math.floor(0 + arr.length) / 2;
+  const newArr = [];
+  const arrCopy = arr.concat(newArr);
+  arrCopy.splice(mid, 0, ...vals);
+  return arrCopy;
+}
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+  return args.reduce((acc, next) => acc.concat(next));
+}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  const evenArr = args.filter(el => el % 2 === 0);
+  return evenArr.reduce((acc, next) => acc + next, 0);
+}
 
 // 10 (*)
-function bind(fn, thisArg, ...outerArgs) {}
+function bind(fn, thisArg, ...outerArgs) {
+  return (...x) => fn.apply(thisArg, outerArgs.concat(x));
+}
 
 /** 11 (*)
   This is a typical mistake to make in JavaScript. We create a number of
@@ -62,8 +103,8 @@ function bind(fn, thisArg, ...outerArgs) {}
 
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
-  var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  const callbacks = [];
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
@@ -81,6 +122,8 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  // Object.freeze(account.password);
+  Object.freeze(account); // Whole object only
   account.password = 's3cret';
   return account.password;
 }
@@ -112,8 +155,8 @@ function templateLiterals() {
     name: 'Pogba',
     role: 'CM',
   }];
-
-  return '';
+  // eslint-disable-next-line
+  return `There are 4 people on the football team. Their names are ${people.map(p => p.name).join(', ')}.`;
 }
 
 /* 14 (*)
@@ -134,7 +177,10 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
-
+  const v1 = variables;
+  const newArr = v1.map(e => escapeHTML(e));
+  const newStr = strings.map(s => escapeHTML(s));
+  return `${newStr[0]}${newArr[0]}${newStr[1]}${newArr[1]}${newStr[2]}`; // :|
 }
 
 function callTemplateTagFunction() {
