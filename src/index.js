@@ -1,14 +1,38 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 
 // Check out the test suite for all the questions for implementation
 
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = (arr) => {
+  let tripled = arr.map(el => { 
+	return el*3
+});
+let filtered = tripled.filter(el => {
+	if(el % 5 === 0)
+		return el;
+})
+return filtered;
+
+
+};
+
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = (arr)=>{
+	let odd = arr.filter(el =>{
+		if(el%2 != 0){
+			return el;
+}
+})
+let doubled = odd.map(el=>{
+		return el*2;
+})
+return doubled;
+
+
+}
 
 // 3 (*)
 const mapFilterAndReduce = (arr) => {};
@@ -33,13 +57,34 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  return `My name is ${first} ${last}`
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript, likesES2015 }) {
+  const {JS, ES6} = {likesJavaScript,likesES2015}
+  if(!JS && !ES6){
+    return 'The student does not like much...';
+  }
+  else if(JS && ES6){
+    return 'The student likes JavaScript and ES2015';
+  }
+  else if(!ES6) {
+    return 'The student likes JavaScript!';
+  }
+  else if(!JS){
+    return "The student likes ES2015!";
+  }
+  
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+	let len = Math.floor(arr.length / 2);
+	arr.splice(len,0,...vals);
+	return arr;
+}
 
 // 8 (*)
 function joinArrays(...args) {}
