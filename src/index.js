@@ -106,6 +106,7 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  Object.freeze(account);
   account.password = 's3cret';
   return account.password;
 }
