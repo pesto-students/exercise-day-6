@@ -44,7 +44,19 @@ function sequentialPromise() {
 // 6 (*)
 // Implement a queue using ES6 class. See test cases for Queue
 class Queue {
-
+  constructor() {
+    this.items = [];
+    this.count = 0;
+  }
+  queue(item) {
+    this.items.push(item);
+    this.count += 1;
+  }
+  dequeue() {
+    if (this.count === 0) throw new Error('Cannot dequeue from empty queue!');
+    this.items.pop();
+    this.count -= 1;
+  }
 }
 
 // 7 (*)
