@@ -13,7 +13,7 @@ function sayHi(name) {
 }
 
 function getName(value) {
-  return value;
+  return new Promise(resolve => resolve(value));
 }
 
 function greet(name) {
