@@ -13,7 +13,7 @@ const tripleAndFilter = (arr) => {
 // 2 (*)
 // eslint-disable-next-line
 const doubleOddNumbers = (arr) => {
-  return arr.fiter(el => el % 2 !== 0).map(el => el * 2);
+  return arr.filter(el => el % 2 !== 0).map(el => el * 2);
 };
 
 // 3 (*)
@@ -39,7 +39,7 @@ const mapFilterAndReduce = (arr) => {
 const instructor = {
   firstName: 'John',
   sayHi: () => {
-    this.firstName = 'Ram';
+    this.firstName = 'Ram'; // [see implement promise]
   },
 };
 
@@ -49,22 +49,35 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript, likesES2015 }) {
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+  const mid = (0 + arr.length) / 2;
+  return arr.splice(mid, 0, ...vals);
+}
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+  return args.reduce((acc, next) => acc.concat(next));
+}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  const evenArr = args.filter(el => el % 2 === 0);
+  return evenArr.reduce((acc, next) => acc + next, 0);
+}
 
 // 10 (*)
-function bind(fn, thisArg, ...outerArgs) {}
+function bind(fn, thisArg, ...outerArgs) {
+  return (...x) => fn.apply(thisArg, outerArgs.concat(x));
+}
 
 /** 11 (*)
   This is a typical mistake to make in JavaScript. We create a number of
@@ -97,6 +110,8 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  // Object.freeze(account.password);
+  Object.freeze(account); // Whole object only
   account.password = 's3cret';
   return account.password;
 }
@@ -128,8 +143,8 @@ function templateLiterals() {
     name: 'Pogba',
     role: 'CM',
   }];
-
-  return '';
+  // eslint-disable-next-line
+  return `There are 4 people on the football team. Their names are ${people.map(p => p.name).join(', ')}.`;
 }
 
 /* 14 (*)
@@ -150,7 +165,10 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
-
+  const v1 = variables;
+  const newArr = v1.map(e => escapeHTML(e));
+  const newStr = strings.map(s => escapeHTML(s));
+  return `${newStr[0]}${newArr[0]}${newStr[1]}${newArr[1]}${newStr[2]}`; // :|
 }
 
 function callTemplateTagFunction() {
