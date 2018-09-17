@@ -94,7 +94,7 @@ function joinArrays(...args) {
 
 // 9 (*)
 function sumEvenArgs(...args) {
-  
+
 }
 
 // 10 (*)
@@ -112,8 +112,8 @@ function bind(fn, thisArg, ...outerArgs) {}
 
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
-  var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  const callbacks = [];
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
@@ -131,6 +131,7 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  const freezed = Object.freeze(account);
   account.password = 's3cret';
   return account.password;
 }
@@ -163,7 +164,7 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  return `There are ${people.length} people on the football team. Their names are ${people[0].name}, ${people[1].name}, ${people[2].name}, ${people[3].name}.`;
 }
 
 /* 14 (*)
@@ -190,7 +191,7 @@ function html(strings, ...variables) {
 function callTemplateTagFunction() {
   const trueExpression = '5 > 4';
   const falseExpression = '3 < 1';
-  return (html`The expression ${trueExpression} is "true" & ${falseExpression} is false`);
+  return (`The expression ${trueExpression} is "true" & ${falseExpression} is false`);
 }
 
 module.exports = {
