@@ -84,7 +84,7 @@ function bind(fn, thisArg, ...outerArgs) {}
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
   var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
