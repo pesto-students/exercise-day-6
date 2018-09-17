@@ -5,7 +5,12 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = (arr) => {
+  const newArr = arr
+    .map(num => num * 3)
+    .filter(tripNum => tripNum % 15 === 0);
+  return newArr;
+};
 
 // 2 (*)
 const doubleOddNumbers = (arr) => {};
