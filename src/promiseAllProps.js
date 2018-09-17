@@ -10,8 +10,18 @@
 //     console.log(result.foo, result.bar);
 // });
 
-function promiseAllProps() {
+function promiseAllProps(obj) {
+  const objKeys = Object.keys(obj);
 
+  const newArr = objKeys.map(val => obj[val]);
+
+  return Promise.all(newArr).then((values) => {
+    const newObj = {};
+    objKeys.forEach((val, index) => {
+      newObj[val] = values[index];
+    });
+    return newObj;
+  });
 }
 
 module.exports = promiseAllProps;
