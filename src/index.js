@@ -5,13 +5,17 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = arr => arr.map(x => x * 3).filter(x => x % 5 === 0);
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = arr => arr.filter(x => x % 2).map(x => x * 2);
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = arr => arr.filter(elem => elem.firstName.length < 5)
+  .reduce((acc, elem) => {
+    acc[elem.firstName] = elem.firstName.length;
+    return acc;
+  }, {});
 
 // 4 (*)
 // var instructor = {
@@ -25,6 +29,9 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi() {
+    this.firstName = 'Ram';
+  },
 };
 
 /* Use default arguments in questions 5 and 6
@@ -33,22 +40,44 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first = 'Anirudh', last = 'Nimmagadda' }) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript = true, likesES2015 = true } = {}) {
+  if (likesJavaScript && likesES2015) return 'The student likes JavaScript and ES2015';
+  else if (likesJavaScript) return 'The student likes JavaScript!';
+  else if (likesES2015) return 'The student likes ES2015!';
+
+  return 'The student does not like much...';
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+  const midElemIdx = Math.floor(arr.length / 2);
+
+  const arrCopy = arr.concat([]);
+  arrCopy.splice(midElemIdx, 0, ...vals);
+  return arrCopy;
+}
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+  return args.reduce((acc, arr) => acc.concat(arr), []);
+}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+  return args.filter((x, idx) => idx % 2).reduce((acc, elem) => acc + elem, 0);
+}
 
 // 10 (*)
-function bind(fn, thisArg, ...outerArgs) {}
+function bind(fn, thisArg, ...outerArgs) {
+  return function boundFn(...args) {
+    return fn.apply(thisArg, outerArgs.concat(args));
+  };
+}
 
 /** 11 (*)
   This is a typical mistake to make in JavaScript. We create a number of
@@ -63,7 +92,7 @@ function bind(fn, thisArg, ...outerArgs) {}
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
   var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
@@ -81,6 +110,7 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  Object.freeze(account);
   account.password = 's3cret';
   return account.password;
 }
@@ -113,7 +143,7 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  return `There are ${people.length} people on the ${teamName} team. Their names are ${people.map(person => person.name).join(', ')}.`;
 }
 
 /* 14 (*)
@@ -134,7 +164,14 @@ function escapeHTML(string) {
 }
 
 function html(strings, ...variables) {
+  const surroundingStrings = strings.map(escapeHTML);
+  const stringsToInterject = variables.map(escapeHTML);
 
+  const finalHTML = surroundingStrings.concat([]);
+  for (let i = stringsToInterject.length - 1; i >= 0; i -= 1) {
+    finalHTML.splice(i + 1, 0, stringsToInterject[i]);
+  }
+  return finalHTML.join('');
 }
 
 function callTemplateTagFunction() {
