@@ -21,7 +21,15 @@ const doubleOddNumbers = (arr) => {
 };
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = (arr) => {
+  const newObj = arr
+    .filter(obj => obj.firstName.length < 5)
+    .reduce((acc, obj) => {
+      acc[obj.firstName] = obj.firstName.length;
+      return acc;
+    }, {});
+  return newObj;
+};
 
 // 4 (*)
 // var instructor = {
