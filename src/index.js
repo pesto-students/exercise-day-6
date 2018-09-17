@@ -5,13 +5,13 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = arr => arr.map(x => x * 3).filter(x => x % 5 === 0);
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = arr => arr.filter(x => x % 2).map(x => x * 2);
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = (arr) => { };
 
 // 4 (*)
 // var instructor = {
@@ -33,22 +33,22 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) { }
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript, likesES2015 }) { }
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) { }
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) { }
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) { }
 
 // 10 (*)
-function bind(fn, thisArg, ...outerArgs) {}
+function bind(fn, thisArg, ...outerArgs) { }
 
 /** 11 (*)
   This is a typical mistake to make in JavaScript. We create a number of
