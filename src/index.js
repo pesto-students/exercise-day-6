@@ -40,7 +40,9 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) { }
+function printFullName({ first = 'Anirudh', last = 'Nimmagadda' }) {
+  return `My name is ${first} ${last}`;
+}
 
 // 6 (*)
 function createStudent({ likesJavaScript, likesES2015 }) { }
