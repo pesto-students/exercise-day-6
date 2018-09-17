@@ -25,10 +25,10 @@ function greet(name) {
 // Pass the tests for the following function
 function rejectPromise() {
   const promise = new Promise((resolve, reject) => {
-    const errorObject = 'Rejected';
+    const errorObject = 'REJECTED!';
     setTimeout(() => reject(errorObject), 300);
   });
-  return promise.catch(() => { });
+  return promise.catch(err => err);
 }
 
 // 4 (*)
