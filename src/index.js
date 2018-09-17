@@ -87,7 +87,10 @@ function placeInMiddle(arr, vals) {
 }
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+	let newArr = Array.prototype.concat(...args)
+	return newArr;
+}
 
 // 9 (*)
 function sumEvenArgs(...args) {}
