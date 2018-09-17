@@ -5,13 +5,26 @@
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+// eslint-disable-next-line
+const tripleAndFilter = (arr) => {
+  return arr.map(el => el * 3).filter(el => el % 5 === 0);
+};
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+// eslint-disable-next-line
+const doubleOddNumbers = (arr) => {
+  return arr.fiter(el => el % 2 !== 0).map(el => el * 2);
+};
 
 // 3 (*)
-const mapFilterAndReduce = (arr) => {};
+const mapFilterAndReduce = (arr) => {
+  const newArr = arr.map(el => el.firstName).filter(el => el.length < 5);
+  const obj = {};
+  newArr.forEach((el) => {
+    obj[el] = el.length;
+  });
+  return obj;
+};
 
 // 4 (*)
 // var instructor = {
@@ -25,6 +38,9 @@ const mapFilterAndReduce = (arr) => {};
 
 const instructor = {
   firstName: 'John',
+  sayHi: () => {
+    this.firstName = 'Ram';
+  },
 };
 
 /* Use default arguments in questions 5 and 6
