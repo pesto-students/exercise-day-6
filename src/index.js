@@ -29,6 +29,9 @@ const mapFilterAndReduce = arr => arr.filter(elem => elem.firstName.length < 5)
 
 const instructor = {
   firstName: 'John',
+  sayHi() {
+    this.firstName = 'Ram';
+  },
 };
 
 /* Use default arguments in questions 5 and 6
