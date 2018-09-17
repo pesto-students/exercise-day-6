@@ -134,7 +134,9 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  const namesArr = people.map(obj => obj.name);
+
+  return `There are ${people.length} people on the ${teamName} team. Their names are ${namesArr.join(', ')}.`;
 }
 
 /* 14 (*)
