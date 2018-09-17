@@ -61,15 +61,26 @@ class Queue {
 
 // 7 (*)
 // Convert the function below to ES6 class (*)
-function Person(firstName, lastName, dateOfBirth) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
-}
+// function Person(firstName, lastName, dateOfBirth) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.dateOfBirth = dateOfBirth;
+// }
 
-Person.prototype.addDobDigits = function addDobDigits() {
-  return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
-};
+// Person.prototype.addDobDigits = function addDobDigits() {
+//   return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
+// };
+
+class Person {
+  constructor(firstName, lastName, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+  }
+  addDobDigits() {
+    return this.dateOfBirth.match(/\d/g).reduce((acc, item) => Number(acc) + Number(item));
+  }
+}
 
 module.exports = {
   timeout,
