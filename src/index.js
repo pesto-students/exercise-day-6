@@ -73,7 +73,11 @@ function sumEvenArgs(...args) {
 }
 
 // 10 (*)
-function bind(fn, thisArg, ...outerArgs) { }
+function bind(fn, thisArg, ...outerArgs) {
+  return function boundFn(...args) {
+    return fn.apply(thisArg, outerArgs.concat(args));
+  };
+}
 
 /** 11 (*)
   This is a typical mistake to make in JavaScript. We create a number of
