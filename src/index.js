@@ -32,13 +32,19 @@ function rejectPromise() {
 }
 
 // 4 (*)
-function allPromises(promises) {
+function allPromises(promises = []) {
   return Promise.all(promises);
 }
 
 // 5 (*)
-function sequentialPromise() {
-
+function sequentialPromise(promises) {
+  let result = promises[0]();
+  let i = 1;
+  while (i < promises.length) {
+    result = result.then(promises[i]);
+    i += 1;
+  }
+  return result;
 }
 
 // 6 (*)
