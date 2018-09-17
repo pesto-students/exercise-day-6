@@ -143,7 +143,7 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  return `There are ${people.length} people on the ${teamName} team. Their names are ${people.map(person => person.name).join(', ')}.`;
 }
 
 /* 14 (*)
