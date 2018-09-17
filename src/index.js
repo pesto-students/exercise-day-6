@@ -1,14 +1,38 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 
 // Check out the test suite for all the questions for implementation
 
 // Use arrow functions in questions 1 - 4
 
 // 1 (*)
-const tripleAndFilter = (arr) => {};
+const tripleAndFilter = (arr) => {
+  let tripled = arr.map(el => { 
+	return el*3
+});
+let filtered = tripled.filter(el => {
+	if(el % 5 === 0)
+		return el;
+})
+return filtered;
+
+
+};
+
 
 // 2 (*)
-const doubleOddNumbers = (arr) => {};
+const doubleOddNumbers = (arr)=>{
+	let odd = arr.filter(el =>{
+		if(el%2 != 0){
+			return el;
+}
+})
+let doubled = odd.map(el=>{
+		return el*2;
+})
+return doubled;
+
+
+}
 
 // 3 (*)
 const mapFilterAndReduce = (arr) => {};
@@ -33,19 +57,45 @@ const instructor = {
 */
 
 // 5 (*)
-function printFullName({ first, last }) {}
+function printFullName({ first, last }) {
+  return `My name is ${first} ${last}`
+}
 
 // 6 (*)
-function createStudent({ likesJavaScript, likesES2015 }) {}
+function createStudent({ likesJavaScript, likesES2015 }) {
+  const {JS, ES6} = {likesJavaScript,likesES2015}
+  if(!JS && !ES6){
+    return 'The student does not like much...';
+  }
+  else if(JS && ES6){
+    return 'The student likes JavaScript and ES2015';
+  }
+  else if(!ES6) {
+    return 'The student likes JavaScript!';
+  }
+  else if(!JS){
+    return "The student likes ES2015!";
+  }
+  
+}
 
 // 7 placeInMiddle([1,2,6,7],[3,4,5]) (*)
-function placeInMiddle(arr, vals) {}
+function placeInMiddle(arr, vals) {
+	let len = Math.floor(arr.length / 2);
+	arr.splice(len,0,...vals);
+	return arr;
+}
 
 // 8 (*)
-function joinArrays(...args) {}
+function joinArrays(...args) {
+	let newArr = Array.prototype.concat(...args)
+	return newArr;
+}
 
 // 9 (*)
-function sumEvenArgs(...args) {}
+function sumEvenArgs(...args) {
+
+}
 
 // 10 (*)
 function bind(fn, thisArg, ...outerArgs) {}
@@ -62,8 +112,8 @@ function bind(fn, thisArg, ...outerArgs) {}
 
 /* eslint-disable no-var, vars-on-top, no-loop-func */
 function blockScoping(n) {
-  var callbacks = [];
-  for (var i = 0; i <= 10; i += 1) {
+  const callbacks = [];
+  for (let i = 0; i <= 10; i += 1) {
     callbacks.push(() => i);
   }
   return callbacks[n]();
@@ -81,6 +131,7 @@ function constImmutable() {
     username: 'pesto',
     password: 'initialPassword',
   };
+  const freezed = Object.freeze(account);
   account.password = 's3cret';
   return account.password;
 }
@@ -113,7 +164,7 @@ function templateLiterals() {
     role: 'CM',
   }];
 
-  return '';
+  return `There are ${people.length} people on the football team. Their names are ${people[0].name}, ${people[1].name}, ${people[2].name}, ${people[3].name}.`;
 }
 
 /* 14 (*)
@@ -140,7 +191,7 @@ function html(strings, ...variables) {
 function callTemplateTagFunction() {
   const trueExpression = '5 > 4';
   const falseExpression = '3 < 1';
-  return (html`The expression ${trueExpression} is "true" & ${falseExpression} is false`);
+  return (`The expression ${trueExpression} is "true" & ${falseExpression} is false`);
 }
 
 module.exports = {
