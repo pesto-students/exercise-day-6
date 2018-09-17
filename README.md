@@ -10,6 +10,10 @@
    How do you think you could _default_ `p3` to a suitable value?
    Try it.
 
+  Answers
+   1) undefined
+   2) let [p1, p2, p3 = 'default'] = phonetic;
+
 2. Given this array:
 
   ```js
@@ -21,6 +25,9 @@
   ```js
     console.log(m, n, o);       // two six eight
   ```
+
+  Answer
+  1) let [a, m, [b, [c, [d, n, e]], o]] = arr2
 
 3. Assume you have this object:
 
@@ -40,11 +47,15 @@
         console.log(misses);          // 524
       ```
 
+      Answer: ({ forwardCacheHit: hits, forwardCacheMiss: misses } = stats);
+
     2. What happens when this line is executed? Why, and how would you fix it?
 
       ```js
         { forwardCacheHit: myhits, forwardCacheMiss: mymisses } = stats;
       ```
+
+      Answer: ({ forwardCacheHit: myhits, forwardCacheMiss: mymisses } = stats);
 
 4. What will happen when this code is executed? Why?
 
@@ -54,6 +65,7 @@
       let i = 5;
     }
   ```
+  Answer: ReferenceError
 
 5. What will this code output?
 
@@ -63,6 +75,8 @@
       }
     console.log(invoiceId);
   ```
+
+  Answer: 647
 
 6. What will be the output of this code snippet?
 
@@ -78,6 +92,8 @@
     3. undefined 4
     4. SyntaxError
 
+    Answer: TypeError
+
 7. Can default parameter expressions be computed? Is this function valid? Try it.
 
     ```js
@@ -88,3 +104,7 @@
 
     1. Does the order of the parameters matter?
     2. Could the `0.2` be replaced by another variable or function call?
+
+    Answers:
+    1) Yes
+    2) Yes
